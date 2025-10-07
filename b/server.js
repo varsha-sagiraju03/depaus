@@ -172,11 +172,14 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173", 
-    "http://localhost:3000",
-    "https://your-frontend-domain.vercel.app",
-    "https://www.your-frontend-domain.vercel.app"
+    // "http://localhost:3000",
+    "https://depaus.vercel.app",
+    // "https://your-frontend-domain.vercel.app",
+    // "https://www.your-frontend-domain.vercel.app"
   ],
-  credentials: true
+  credentials: true,
+   methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
 app.use(express.json());
