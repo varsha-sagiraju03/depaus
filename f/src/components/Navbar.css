@@ -1,0 +1,199 @@
+/* src/components/Navbar.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+.navbar {
+  padding: 1rem 1.5rem;
+ 
+}
+
+.navbar .nav-link {
+  color: #000;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+/* .logo-image {
+  width: 180px;
+  height: 90px;
+} */
+ /* .logo-image {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+
+@media (max-width: 768px) {
+  .logo-image {
+    width: 140px;
+  }
+} */
+ .logo-image {
+  width: 180px;
+  height: auto;
+}
+
+/* Medium to large devices */
+@media (min-width: 768px) {
+  .logo-image {
+    width: 140px;
+  }
+}
+
+/* Extra large screens */
+@media (min-width: 1200px) {
+  .logo-image {
+    width: 180px;
+  }
+}
+
+/* Fix for Business Visa and other direct dropdown items */
+.dropdown-item-custom {
+  color: #212529 !important;
+  padding: 0.5rem 0.5rem !important;
+  text-decoration: none;
+}
+
+.dropdown-item-custom:hover {
+  color: #16181b !important;
+  background-color: #f8f9fa !important;
+}
+
+/* Ensure all dropdown items have consistent styling */
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-item,
+.navbar-nav .dropdown-toggle {
+  color: #212529 !important;
+}
+
+.navbar-nav .dropdown-item:hover,
+.navbar-nav .dropdown-toggle:hover {
+  color: #16181b !important;
+}
+
+
+
+
+.navbar .nav-link:hover {
+  color: #555;
+}
+
+.navbar-brand img {
+  max-height: 50px;
+}
+
+@media (max-width: 992px) {
+  .navbar-collapse {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 10px;
+  }
+}
+/* ------------------------------ */
+/* Navbar.css */
+
+.navbar {
+  padding: 1rem 1.5rem;
+ 
+}
+
+.navbar .nav-link {
+  color: #333;
+  font-weight: 600;
+  position: relative;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+  color: #007bff; /* Bootstrap Primary or your preferred color */
+  transform: scale(1.05);
+}
+
+/* Optional: Add underline animation on hover */
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #007bff;
+  transition: width 0.3s;
+}
+
+.navbar .nav-link:hover::after {
+  width: 100%;
+}
+
+
+.book-btn {
+  background: linear-gradient(135deg, #001f54, #004080); /* Dark Blue Gradient */
+  border: none;
+  padding: 0.6rem 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  margin-right: 2rem;
+}
+
+.book-btn:hover {
+  background: linear-gradient(135deg, #003366, #0059b3); /* Brighter Dark Blue */
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+}
+
+.book-btn i {
+  transition: transform 0.3s ease;
+}
+
+.book-btn:hover i {
+  transform: translateX(4px);
+}
+/* Navbar.css */
+.navbar .dropdown-toggle::after {
+  display: none !important;
+}
+/* ------------------------------ */
+/* Unique animation for dropdown items */
+.dropdown-menu .dropdown-item {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+  font-weight: 500;
+  background-color: white;
+  transition: all 0.4s ease;
+  z-index: 1;
+  color: #003366;
+  border-radius: 6px;
+}
+
+/* Gradient overlay that animates in */
+.dropdown-menu .dropdown-item::before {
+  content: "";
+  position: absolute;
+  left: -100%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+  transition: all 0.4s ease;
+}
+
+/* Hover animation */
+.dropdown-menu .dropdown-item:hover::before {
+  left: 0;
+}
+
+.dropdown-menu .dropdown-item:hover {
+  color: #001a33;
+  font-weight: 600;
+  transform: translateX(6px) scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}

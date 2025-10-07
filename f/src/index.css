@@ -1,0 +1,31 @@
+/* For WebKit browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #007bff, #00d4ff);
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #0056b3, #00bfff);
+}
+
+/* .text-justify {
+  text-align: justify !important;
+} */
+ .service-info-section {
+  padding-bottom: 5rem;
+  margin-bottom: 80px; /* Adjust as needed to keep above footer */
+}
+.a-c-link {
+  color: #FFF;
+  text-decoration: none;
+}
