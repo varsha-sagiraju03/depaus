@@ -219,21 +219,34 @@ if (!fs.existsSync(excelFile)) {
   XLSX.writeFile(wb, excelFile);
 }
 
-// email
+// UPDATED EMAIL CONFIGURATION - FIX FOR RENDER
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // Use TLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
   },
+  tls: {
+    rejectUnauthorized: false, // Important for cloud deployments
+  },
+  connectionTimeout: 60000, // 60 seconds
+  greetingTimeout: 30000,
+  socketTimeout: 60000
 });
 
 // Verify email configuration on startup
 transporter.verify(function (error, success) {
   if (error) {
-    console.log("❌ Email transporter error:", error);
+    console.log("❌ Email transporter error:", {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
   } else {
     console.log("✅ Email server is ready to take messages");
+    console.log("📧 Using email:", process.env.EMAIL_USER);
   }
 });
 
@@ -344,6 +357,63 @@ This is an automated message from the Xcel Global Services website.
   }
 });
 
+// NEW: Test email endpoint - ADD THIS ROUTE
+app.get("/api/test-email", async (req, res) => {
+  try {
+    console.log("🧪 Testing email configuration...");
+    console.log("📧 Email user:", process.env.EMAIL_USER);
+    
+    const testTransporter = nodemailer.createTransporter({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+      tls: {
+        rejectUnauthorized: false
+      },
+      connectionTimeout: 60000
+    });
+
+    console.log("📧 Attempting to send test email...");
+    
+    const result = await testTransporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: "sagiraju1770@gmail.com",
+      subject: "TEST - Email Configuration Working ✅",
+      text: `This is a test email from your Render backend.
+      
+Server: ${process.env.NODE_ENV || 'development'}
+Time: ${new Date().toISOString()}
+      
+If you receive this, your email configuration is correct!`,
+    });
+
+    console.log("✅ Test email sent successfully!");
+    
+    res.json({ 
+      success: true, 
+      message: "Test email sent successfully!",
+      emailId: result.messageId 
+    });
+  } catch (error) {
+    console.error("❌ Test email failed:", {
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
+    
+    res.status(500).json({ 
+      success: false, 
+      error: error.message,
+      code: error.code,
+      suggestion: "Check your Gmail App Password and Render environment variables"
+    });
+  }
+});
+
 // FIXED: Use middleware approach instead of route pattern
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, '../f2/dist/index.html'));
@@ -352,4 +422,4 @@ app.use((req, res, next) => {
 // ================= START SERVER =================
 app.listen(PORT, () => {
   console.log(`🚀 Server running on port ${PORT}`);
-}); 
+});
