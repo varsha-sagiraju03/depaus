@@ -2,10 +2,10 @@
     "name": "backend",
   "version": "1.0.0",
   "description": "Xcel Global Services Backend",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "node index.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
