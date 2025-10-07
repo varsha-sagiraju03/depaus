@@ -172,13 +172,10 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     "http://localhost:5173", 
-    // "http://localhost:3000",
     "https://depaus.vercel.app",
-    // "https://your-frontend-domain.vercel.app",
-    // "https://www.your-frontend-domain.vercel.app"
   ],
   credentials: true,
-   methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
 
@@ -219,7 +216,7 @@ if (!fs.existsSync(excelFile)) {
   XLSX.writeFile(wb, excelFile);
 }
 
-// UPDATED EMAIL CONFIGURATION - FIX FOR RENDER
+// CORRECTED EMAIL CONFIGURATION - FIXED TYPO
 const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
@@ -357,13 +354,14 @@ This is an automated message from the Xcel Global Services website.
   }
 });
 
-// NEW: Test email endpoint - ADD THIS ROUTE
+// NEW: Test email endpoint - WITH TYPO FIXED
 app.get("/api/test-email", async (req, res) => {
   try {
     console.log("🧪 Testing email configuration...");
     console.log("📧 Email user:", process.env.EMAIL_USER);
     
-    const testTransporter = nodemailer.createTransporter({
+    // FIXED: createTransport (not createTransporter)
+    const testTransporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
       secure: false,
